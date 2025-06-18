@@ -9,9 +9,9 @@ export const fetchMovieDetails = createAsyncThunk('movies/fetchMovieDetails', as
    const response = await getMovieDetails(movieId)
    return response.data
 })
-export const fetchGenres = createAsyncThunk('', async () => {
+export const fetchGenres = createAsyncThunk('movies/fetchGenres', async () => {
    const response = await getGenres()
-   return response.data.results
+   return response.data.genres
 })
 
 const movieSlice = createSlice({
@@ -19,6 +19,7 @@ const movieSlice = createSlice({
    initialState: {
       movies: [],
       genres: [],
+      movieDetails: null,
       loading: false,
       error: null,
    },
@@ -46,6 +47,18 @@ const movieSlice = createSlice({
             state.movieDetails = action.payload
          })
          .addCase(fetchMovieDetails.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+         })
+         .addCase(fetchGenres.pending, (state) => {
+            state.loading = true
+            state.error = null
+         })
+         .addCase(fetchGenres.fulfilled, (state, action) => {
+            state.loading = false
+            state.genres = action.payload
+         })
+         .addCase(fetchGenres.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
          })

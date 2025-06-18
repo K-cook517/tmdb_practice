@@ -7,7 +7,7 @@ export const fetchGenres = createAsyncThunk('', async () => {
 })
 
 const genreSlice = createSlice({
-   name: 'Genres',
+   name: 'genres',
    initialState: {
       genres: [],
       loading: false,

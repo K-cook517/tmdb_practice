@@ -25,13 +25,11 @@ export const getMovies = async (page = 1) => {
 }
 
 //장르별 구분
-
+// https://api.themoviedb.org/3/genre/movie/list?language=ko
 export const getGenres = async (page = 1) => {
-   const response = await tmdbApi.get('/movie/genre/movie/list', {
+   const response = await tmdbApi.get('/genre/movie/list', {
       params: {
          language: 'ko-KR',
-         page: page,
-         region: 'KR',
       },
    })
    return response

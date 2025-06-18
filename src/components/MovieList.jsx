@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../features/movieSlice'
 import { Link } from 'react-router-dom'
+import { fetchGenres } from '../features/genreSlice'
 
 function MovieList() {
    const dispatch = useDispatch()
