@@ -24,6 +24,11 @@ function MovieList() {
                   <li>{movie.title}</li>
                </Link>
             ))}
+            <li>
+               <Link to={`genre`}>
+                  <h3>장르 목록</h3>
+               </Link>
+            </li>
          </ul>
       </div>
    )
