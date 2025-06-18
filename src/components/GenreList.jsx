@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchGenres } from '../features/movieSlice'
+import { Link } from 'react-router-dom'
 
 function GenreList() {
    const dispatch = useDispatch()
@@ -20,6 +21,11 @@ function GenreList() {
             {genres.map((genre) => (
                <li>{genre.name}</li>
             ))}
+            <li>
+               <Link to={`/`}>
+                  <h3>현재 상영작</h3>
+               </Link>
+            </li>
          </ul>
       </div>
    )
