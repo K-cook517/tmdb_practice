@@ -1,8 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getMovieDetails, getMovies } from '../api/tmdbApi'
+import { getMovieDetails, getMovies, getGenres } from '../api/tmdbApi'
 
 export const fetchMovies = createAsyncThunk('', async () => {
    const response = await getMovies()
+   return response.data.results
+})
+export const fetchMovieDetails = createAsyncThunk('movies/fetchMovieDetails', async (movieId) => {
+   const response = await getMovieDetails(movieId)
+   return response.data
+})
+export const fetchGenres = createAsyncThunk('', async () => {
+   const response = await getGenres()
    return response.data.results
 })
 
@@ -10,6 +18,7 @@ const movieSlice = createSlice({
    name: 'movies',
    initialState: {
       movies: [],
+      genres: [],
       loading: false,
       error: null,
    },
@@ -41,11 +50,6 @@ const movieSlice = createSlice({
             state.error = action.error.message
          })
    },
-})
-
-export const fetchMovieDetails = createAsyncThunk('movies/fetchMovieDetails', async (movieId) => {
-   const response = await getMovieDetails(movieId)
-   return response.data
 })
 
 export default movieSlice.reducer

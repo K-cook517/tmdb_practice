@@ -11,10 +11,10 @@ const tmdbApi = axios.create({
    },
 })
 
-//인기영화목록
+//상영 목록
 
 export const getMovies = async (page = 1) => {
-   const response = await tmdbApi.get('/movie/popular', {
+   const response = await tmdbApi.get('/movie/now_playing', {
       params: {
          language: 'ko-KR',
          page: page,
@@ -24,16 +24,17 @@ export const getMovies = async (page = 1) => {
    return response
 }
 
-//개봉예정
+//장르별 구분
 
-export const getUpcomingMovies = async (page = 1) => {
-   const response = await tmdbApi.get('/movie/upcoming', {
+export const getGenres = async (page = 1) => {
+   const response = await tmdbApi.get('/movie/genre/movie/list', {
       params: {
          language: 'ko-KR',
          page: page,
          region: 'KR',
       },
    })
+   return response
 }
 
 //상세정보
